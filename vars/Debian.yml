@@ -1,0 +1,5 @@
+---
+sshd_package: openssh-server
+ssh_client_package: openssh-clients
+sshd_user: sshd
+sshd_group: ssh

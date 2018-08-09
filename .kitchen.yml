@@ -1,0 +1,101 @@
+---
+# we use docker as plateform
+driver:
+  name: docker
+  privileged: true
+  volume: /sys/fs/cgroup:/sys/fs/cgroup
+
+# Ansible will be our provisioner
+provisioner:
+  name: ansible_playbook
+  hosts: localhost
+  require_chef_for_busser: false
+  require_ruby_for_busser: false
+  require_ansible_omnibus: false
+
+# We use Inspec as testing framework
+verifier:
+  name: inspec
+  inspec_tests:
+    - path: tests/inspec
+
+# Select platforms
+platforms:
+  - name: centos-7
+    driver:
+      run_command: /usr/sbin/init
+      platform: centos
+  - name: centos-6
+    driver:
+      provision_command: yum install -y upstart
+      run_command: /sbin/init
+      platform: centos
+  - name: fedora-28
+    driver:
+      run_command: /usr/sbin/init
+      platform: centos
+  - name: fedora-27
+    driver:
+      run_command: /usr/sbin/init
+      platform: centos
+  - name: fedora-26
+    driver:
+      run_command: /usr/sbin/init
+      platform: centos
+  - name: ubuntu-18.04
+    driver:
+      provision_command: apt-get install -y init
+      run_command: /sbin/init
+      platform: ubuntu
+  - name: ubuntu-17.10
+    driver:
+      provision_command: apt-get install -y init
+      run_command: /sbin/init
+      platform: ubuntu
+  - name: ubuntu-16.04
+    driver:
+      provision_command: apt-get install -y init
+      run_command: /sbin/init
+      platform: ubuntu
+  - name: ubuntu-14.04
+    driver:
+      platform: ubuntu
+  - name: debian-9
+    driver:
+      provision_command: apt-get install -y systemd
+      run_command: /bin/systemd
+      platform: debian
+  - name: debian-8
+    driver:
+      run_command: /sbin/init
+      platform: debian
+  - name: oraclelinux-7
+    driver:
+      run_command: /usr/sbin/init
+      platform: centos
+  - name: oraclelinux-6
+    driver:
+      provision_command: yum install -y upstart
+      run_command: /sbin/init
+      platform: centos
+  - name: amazonlinux-2
+    driver:
+      provision_command:
+        - rpm -ihv http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+        - yum install -y ansible upstart
+      run_command: /usr/sbin/init
+      platform: centos
+  - name: amazonlinux-1
+    driver:
+      provision_command:
+        - rpm -ihv http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
+        - yum install -y ansible upstart
+      run_command: /sbin/init
+      platform: centos
+
+# Define playbook
+suites:
+  - name: default
+    provisioner:
+      name: ansible_playbook
+      playbook: tests/test.yml

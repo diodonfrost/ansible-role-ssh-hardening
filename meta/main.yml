@@ -1,0 +1,59 @@
+---
+galaxy_info:
+  role_name: ssh-hardening
+  author: diodonfrost
+  description: Hardening sshd and ssh
+
+  license: license Apache
+
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Fedora
+      versions:
+        - 28
+        - 27
+        - 26
+    - name: Debian
+      versions:
+        - stretch
+        - jessie
+    - name: Ubuntu
+      versions:
+        - bionic
+        - artful
+        - xenial
+        - trusty
+        - precise
+    - name: OracleLinux
+      versions:
+        - 7
+        - 6
+    - name: Amazon
+      versions:
+        - Candidate
+        - 2017.12
+      versions:
+    - name: FreeBSD
+      versions:
+        - 11.2
+        - 10.3
+    - name: OpenBSD
+      versions:
+        - 6.0
+    - name: Windows
+      versions:
+        - 2016
+        - 2012R2
+        - 2008R2
+
+  galaxy_tags:
+   - system
+   - security
+   - hardening
+
+dependencies: []
