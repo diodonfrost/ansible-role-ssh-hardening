@@ -4,6 +4,7 @@
 - name: Update apt cache
   apt:
     update_cache: yes
+  changed_when: false
   when: ansible_os_family == 'Debian'
 
 - name: Install openssh-server
@@ -27,5 +28,5 @@
 - name: Start sshd service
   service:
     name: "{{ sshd_service }}"
-    state: running
+    state: started
     enabled: yes
