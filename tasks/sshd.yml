@@ -1,0 +1,31 @@
+---
+# params openssh-server
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Install openssh-server
+  package:
+    name: "{{ sshd_package }}"
+    state: present
+
+- name: Display openssh version
+  shell: ssh -V 2>&1 | sed -r 's/.*_([0-9]*\.[0-9]).*/\1/g'
+  args:
+    executable: /bin/sh
+  changed_when: false
+  register: sshd_version
+  check_mode: no
+
+- name: set banner
+  copy:
+    src: issue.net
+    dest: "{{ sshd_banner }}"
+
+- name: Start sshd service
+  service:
+    name: "{{ sshd_service }}"
+    state: running
+    enabled: yes

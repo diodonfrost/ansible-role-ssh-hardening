@@ -4,18 +4,10 @@
 - name: Set OS dependent variables
   include_vars: "{{ ansible_os_family }}.yml"
 
-- name: Update apt cache
-  apt:
-    update_cache: yes
-  when: ansible_os_family == 'Debian'
-
-- name: Install openssh-server
-  package:
-      name: "{{ sshd_package }}"
-      state: present
-
 - name: Install openssh-client
   package:
     name: "{{ ssh_client_package }}"
     state: present
   when: ssh_client == 'true'
+
+- include_tasks: sshd.yml
