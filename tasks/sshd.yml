@@ -24,6 +24,15 @@
   copy:
     src: issue.net
     dest: "{{ sshd_banner }}"
+    owner: root
+    group: root
+
+- name: Configfile openssh-server
+  template:
+    src: sshd_config.j2
+    dest: "{{ sshd_config }}"
+    owner: root
+    group: root
 
 - name: Start sshd service
   service:

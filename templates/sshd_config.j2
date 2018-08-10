@@ -12,7 +12,7 @@ Port {{ sshd_port }}
 # Use these options to restrict which interfaces/protocols sshd will bind to
 #ListenAddress ::
 #ListenAddress {{ sshd_listening_address }}
-Protocol {{ protocol_version }}
+Protocol {{ sshd_protocol_version }}
 # HostKeys for protocol version 2
 HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_dsa_key

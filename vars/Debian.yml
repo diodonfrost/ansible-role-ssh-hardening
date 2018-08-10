@@ -4,3 +4,4 @@ ssh_client_package: openssh-clients
 sshd_service: ssh
 sshd_user: sshd
 sshd_group: ssh
+sshd_config: /etc/ssh/sshd_config
