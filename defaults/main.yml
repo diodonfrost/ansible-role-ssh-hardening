@@ -6,16 +6,16 @@
 ssh_client: true
 
 # Define listening sshd port
-sshd_port: 22
+sshd_port: "22"
 
 # Use only ssh protocol version 2
-sshd_protocol_version: 2
+sshd_protocol_version: "2"
 
 # Listening on specific address
-sshd_listening_address: 0.0.0.0
+sshd_listening_address: "0.0.0.0"
 
 # Deny root login
-sshd_root_login: no
+sshd_root_login: "no"
 
 # Disable kerberos
 sshd_kerberos_support: false
@@ -24,17 +24,17 @@ sshd_kerberos_support: false
 sshd_gssapi_support: false
 
 # Disable x11 forwarding
-sshd_x11_forwarding: no
+sshd_x11_forwarding: "no"
 
 # Disable agent forwarding
-sshd_agent_forwarding: no
+sshd_agent_forwarding: "no"
 
 # Disable tcp forwarding
-sshd_tcp_forwarding: no
+sshd_tcp_forwarding: "no"
 
 # Disconnect idle sessions
-sshd_client_alive_intervale: 300
-sshd_client_alive_countMax: 2
+sshd_client_alive_intervale: "300"
+sshd_client_alive_countMax: "2"
 
 # Set banner
 sshd_banner: "/etc/issue.net"

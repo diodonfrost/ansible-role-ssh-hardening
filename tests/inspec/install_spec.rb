@@ -13,7 +13,7 @@ control 'install-02' do
   impact 1.0
   title 'Openssh folder'
   desc 'Openssh-server should be owned by root'
-  describe package('openssh-server') do
+  describe file('/etc/ssh') do
     it { should exist }
     it { should be_directory }
     it { should be_owned_by 'root' }
