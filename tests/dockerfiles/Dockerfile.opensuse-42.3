@@ -12,7 +12,7 @@ rm -f /usr/lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /usr/lib/systemd/system/basic.target.wants/*;\
 rm -f /usr/lib/systemd/system/anaconda.target.wants/*;
 
-Run zypper -n install git ansible sudo
+RUN zypper -n install git ansible sudo
 
 VOLUME [ "/sys/fs/cgroup" ]
 

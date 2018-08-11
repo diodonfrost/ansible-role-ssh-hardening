@@ -1,15 +1,6 @@
-# Bacula-client install check
+# Openssh hardening check
 
 control 'install-01' do
-  impact 1.0
-  title 'Openssh-server package'
-  desc 'Openssh-server should be installed'
-  describe package('openssh-server') do
-    it { should be_installed }
-  end
-end
-
-control 'install-02' do
   impact 1.0
   title 'Openssh folder'
   desc 'Openssh-server should be owned by root'
@@ -20,13 +11,20 @@ control 'install-02' do
   end
 end
 
-control 'install-03' do
+control 'install-02' do
   impact 1.0
-  title 'Openssh-server config'
-  desc 'Openssh-server config'
+  title 'Protocol ssh version'
+  desc 'Protocol ssh allow should be only 2'
   describe sshd_config do
     its('Protocol') { should cmp 2 }
+  end
+end
+
+control 'install-03' do
+  impact 1.0
+  title 'Root login not allow'
+  desc 'Root login should be disable'
+  describe sshd_config do
     its('PermitRootLogin') { should cmp 'no'}
-    its('UsePAM') { should eq 'yes' }
   end
 end
