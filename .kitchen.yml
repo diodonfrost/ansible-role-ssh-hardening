@@ -69,10 +69,6 @@ platforms:
     driver:
       run_command: /sbin/init
       platform: debian
-  - name: debian-7
-    driver:
-      run_command: /sbin/init
-      platform: debian
   - name: oraclelinux-7
     driver:
       run_command: /usr/sbin/init
