@@ -1,7 +1,7 @@
 FROM oraclelinux:6
 
 RUN rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
-RUN yum -y install git ansible sudo openssh-server which curl
+RUN yum -y install git ansible sudo which curl
 
 RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
 
