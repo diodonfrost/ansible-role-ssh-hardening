@@ -1,29 +1,112 @@
 # Role Name
 
-[![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.ssh_hardening-660198.svg)](https://galaxy.ansible.com/diodonfrost/ssh_hardening)
 [![Build Status](https://travis-ci.org/diodonfrost/ansible-role-ssh-hardening.svg?branch=master)](https://travis-ci.org/diodonfrost/ansible-role-ssh-hardening)
 
-A brief description of the role goes here.
+This role provide a compliance for secure openssh-server and openssh-client on your target host.
 
 ## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role was developed using Ansible 2.4 Backwards compatibility is not guaranteed.
+Use `ansible-galaxy install diodonfrost.ssh_hardening` to install the role on your system.
+
+Supported platforms:
+
+```yaml
+- name: EL
+  versions:
+    - 6
+    - 7
+- name: Fedora
+  versions:
+    - 28
+    - 27
+    - 26
+- name: Debian
+  versions:
+    - stretch
+    - jessie
+    - wheezy
+- name: Ubuntu
+  versions:
+    - bionic
+    - artful
+    - xenial
+    - trusty
+    - precise
+- name: OracleLinux
+  versions:
+    - 7
+    - 6
+- name: Amazon
+  versions:
+    - all
+- name: opensuse
+  versions:
+    - all
+```
 
 ## Role Variables
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+This role has multiple variables. The defaults for all these variables are the following:
+
+```yaml
+# Install client ssh.
+# Default is true.
+ssh_client: true
+
+# Define listening sshd port
+sshd_port: "22"
+
+# Use only ssh protocol version 2
+sshd_protocol_version: "2"
+
+# Listening on specific address
+sshd_listening_address: "0.0.0.0"
+
+# Deny root login
+sshd_root_login: "no"
+
+# Disable kerberos
+sshd_kerberos_support: false
+
+# Disable gssapi authentification
+sshd_gssapi_support: false
+
+# Disable x11 forwarding
+sshd_x11_forwarding: "no"
+
+# Disable agent forwarding
+sshd_agent_forwarding: "no"
+
+# Disable tcp forwarding
+sshd_tcp_forwarding: "no"
+
+# Disconnect idle sessions
+sshd_client_alive_intervale: "300"
+sshd_client_alive_countMax: "2"
+
+# Set banner
+sshd_banner: "/etc/issue.net"
+
+# Cipher do not use sha1
+ciphers: "chacha20-poly1305,aes256-gcm,aes128-gcm,aes256-ctr,aes192-ctr,aes128-ctr"
+```
 
 ## Dependencies
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 ## Example Playbook
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+This is a sample playbook file for deploying the Ansible Galaxy ssh-hardening role in a localhost and installing the open source version of ssh-hardening.
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+---
+- hosts: localhost
+  become: true
+  roles:
+    - role: diodonfrost.ssh_hardening
+```
 
 ## License
 
@@ -31,4 +114,4 @@ BSD
 
 ## Author Information
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+This role was created in 2018 by diodonfrost.
