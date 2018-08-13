@@ -1,10 +1,6 @@
 ---
 # defaults file for ansible-role-ssh-hardening
 
-# Install client ssh.
-# Default is true.
-ssh_client: true
-
 # Define listening sshd port
 sshd_port: "22"
 
