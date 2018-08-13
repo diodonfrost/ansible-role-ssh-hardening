@@ -39,11 +39,19 @@ sshd_client_alive_countMax: "2"
 # Set banner
 sshd_banner: "/etc/issue.net"
 
+### CRYPTOGRAPHY ###
+openssh_ciphers: []
+
 # Cipher do not use sha1
-ciphers:
+ciphers_openssh_66:
   - chacha20-poly1305@openssh.com
   - aes256-gcm@openssh.com
   - aes128-gcm@openssh.com
+  - aes256-ctr
+  - aes192-ctr
+  - aes128-ctr
+
+ciphers_openssh_53:
   - aes256-ctr
   - aes192-ctr
   - aes128-ctr

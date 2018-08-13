@@ -10,4 +10,15 @@
     state: present
   when: ssh_client == 'true'
 
+- name: get openssh-version
+  shell: ssh -V 2>&1 | sed -r 's/.*_([0-9]*\.[0-9]).*/\1/g'
+  args:
+    executable: /bin/sh
+  changed_when: false
+  register: openssh_version
+  check_mode: no
+
+
+- include_tasks: crypto.yml
+
 - include_tasks: sshd.yml
