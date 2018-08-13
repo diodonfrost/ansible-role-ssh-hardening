@@ -37,6 +37,7 @@ sshd_banner: "/etc/issue.net"
 
 ### CRYPTOGRAPHY ###
 openssh_ciphers: []
+openssh_macs: []
 
 # Cipher do not use sha1
 ciphers_openssh_66:
@@ -51,3 +52,26 @@ ciphers_openssh_53:
   - aes256-ctr
   - aes192-ctr
   - aes128-ctr
+
+# Message authentication code
+macs_openssh_76:
+  - hmac-sha2-512-etm@openssh.com
+  - hmac-sha2-256-etm@openssh.com
+  - umac-128-etm@openssh.com
+  - hmac-sha2-512
+  - hmac-sha2-256
+
+macs_openssh_66:
+  - hmac-sha2-512-etm@openssh.com
+  - hmac-sha2-256-etm@openssh.com
+  - umac-128-etm@openssh.com
+  - hmac-sha2-512
+  - hmac-sha2-256
+
+macs_openssh_59:
+  - hmac-sha2-512
+  - hmac-sha2-256
+  - hmac-ripemd160
+
+macs_openssh_53:
+  - hmac-ripemd160

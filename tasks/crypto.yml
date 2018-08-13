@@ -1,6 +1,7 @@
 ---
 # Set strong cipher and crypto params
 
+### CIPHERS ###
 - name: Use strong cipher with opnessh 6.6
   set_fact:
     openssh_ciphers: '{{ ciphers_openssh_66 }}'
@@ -10,3 +11,24 @@
   set_fact:
     openssh_ciphers: '{{ ciphers_openssh_53 }}'
   when: openssh_version.stdout >= '5.3' and not openssh_ciphers
+
+### MESSAGE AUTHENTIFICATION CODE ###
+- name: Use strong macs with opnessh 7.6
+  set_fact:
+    openssh_macs: '{{ macs_openssh_76 }}'
+  when: openssh_version.stdout >= '7.6' and not openssh_macs
+
+- name: Use strong macs with opnessh 6.6
+  set_fact:
+    openssh_macs: '{{ macs_openssh_66 }}'
+  when: openssh_version.stdout >= '6.6' and not openssh_macs
+
+- name: Use strong cipher with openssh 5.9
+  set_fact:
+    openssh_macs: '{{ macs_openssh_59 }}'
+  when: openssh_version.stdout >= '5.9' and not openssh_macs
+
+- name: Use strong cipher with openssh 5.3
+  set_fact:
+    openssh_macs: '{{ macs_openssh_53 }}'
+  when: openssh_version.stdout >= '5.3' and not openssh_macs

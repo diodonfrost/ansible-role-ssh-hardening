@@ -23,6 +23,7 @@ UsePrivilegeSeparation yes
 
 ### CRYPTOGRAPHY ###
 Ciphers {{ openssh_ciphers| join(',') }}
+MACs {{ openssh_macs| join(',') }}
 
 # Lifetime and size of ephemeral version 1 server key
 KeyRegenerationInterval 3600

@@ -4,7 +4,7 @@ MAINTAINER diodonfrost <diodonfrost@protonmail.com>
 RUN apt-get update -y  &&  apt-get install --fix-missing && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y \
-    python python-yaml sudo \
+    python python-yaml sudo openssh-server openssh-client \
     curl gcc python-dev libffi-dev libssl-dev
 
 # Install pip
