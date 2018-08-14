@@ -28,3 +28,13 @@ control 'install-03' do
     its('PermitRootLogin') { should cmp 'no'}
   end
 end
+
+control 'install-04' do
+  impact 1.0
+  title 'Disable forwarding with openssh'
+  desc 'Tcp and x11 forwarding should be disable with openssh'
+  describe sshd_config do
+    its('AllowTcpForwarding') { should cmp 'no'}
+    its('X11Forwarding') { should cmp 'no'}
+  end
+end
