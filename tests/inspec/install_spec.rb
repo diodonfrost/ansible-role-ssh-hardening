@@ -13,28 +13,18 @@ end
 
 control 'install-02' do
   impact 1.0
-  title 'Protocol ssh version'
-  desc 'Protocol ssh allow should be only 2'
-  describe sshd_config do
-    its('Protocol') { should cmp 2 }
-  end
-end
-
-control 'install-03' do
-  impact 1.0
-  title 'Root login not allow'
-  desc 'Root login should be disable'
-  describe sshd_config do
-    its('PermitRootLogin') { should cmp 'no'}
-  end
-end
-
-control 'install-04' do
-  impact 1.0
-  title 'Disable forwarding with openssh'
-  desc 'Tcp and x11 forwarding should be disable with openssh'
-  describe sshd_config do
-    its('AllowTcpForwarding') { should cmp 'no'}
-    its('X11Forwarding') { should cmp 'no'}
+  title 'Openssh config file'
+  desc 'sshd_config should be only writtable and readable by root'
+  describe file('/etc/ssh/sshd_config') do
+    it { should exist }
+    it { should be_file }
+    it { should be_owned_by 'root' }
+    it { should be_writable.by('owner') }
+    it { should_not be_executable }
+    it { should_not be_readable.by('group') }
+    it { should_not be_readable.by('other') }
+    it { should be_writable.by('owner') }
+    it { should_not be_writable.by('group') }
+    it { should_not be_writable.by('other') }
   end
 end

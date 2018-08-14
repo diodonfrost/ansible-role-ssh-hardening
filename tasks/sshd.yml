@@ -9,6 +9,13 @@
   register: sshd_version
   check_mode: no
 
+- name: set atributes on sshd_config file
+  file:
+    path: "{{ sshd_config }}"
+    owner: "{{ sshd_config_owner }}"
+    group: "{{ sshd_config_group }}"
+    mode: 0600
+
 - name: set banner
   copy:
     src: issue.net

@@ -3,3 +3,5 @@ sshd_service: ssh
 sshd_user: sshd
 sshd_group: ssh
 sshd_config: /etc/ssh/sshd_config
+sshd_config_owner: root
+sshd_config_group: root

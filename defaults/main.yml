@@ -71,7 +71,6 @@ macs_openssh_66:
 macs_openssh_59:
   - hmac-sha2-512
   - hmac-sha2-256
-  - hmac-ripemd160
 
 macs_openssh_53:
-  - hmac-ripemd160
+  - hmac-sha1
