@@ -40,7 +40,7 @@ sshd_banner: "/etc/issue.net"
 sshd_pam: "yes"
 
 # Use  privilege separation
-sshd_privilege_separation_58: "sandbox"
+sshd_privilege_separation_59: "sandbox"
 sshd_privilege_separation_53: "yes"
 
 # Password authentification should be disable
