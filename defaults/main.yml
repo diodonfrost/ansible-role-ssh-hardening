@@ -38,6 +38,7 @@ sshd_banner: "/etc/issue.net"
 ### CRYPTOGRAPHY ###
 openssh_ciphers: []
 openssh_macs: []
+openssh_kexalgorithms: []
 
 # Cipher do not use sha1
 ciphers_openssh_66:
@@ -74,3 +75,11 @@ macs_openssh_59:
 
 macs_openssh_53:
   - hmac-sha1
+
+# Key exchange algorithms
+kexalgorithms_openssh_66:
+  - curve25519-sha256@libssh.org
+  - diffie-hellman-group-exchange-sha256
+
+kexalgorithms_openssh_53:
+  - diffie-hellman-group-exchange-sha256

@@ -50,10 +50,6 @@ Supported platforms:
 This role has multiple variables. The defaults for all these variables are the following:
 
 ```yaml
-# Install client ssh.
-# Default is true.
-ssh_client: true
-
 # Define listening sshd port
 sshd_port: "22"
 
@@ -87,9 +83,6 @@ sshd_client_alive_countMax: "2"
 
 # Set banner
 sshd_banner: "/etc/issue.net"
-
-# Cipher do not use sha1
-ciphers: "chacha20-poly1305,aes256-gcm,aes128-gcm,aes256-ctr,aes192-ctr,aes128-ctr"
 ```
 
 ## Dependencies
@@ -111,6 +104,10 @@ This is a sample playbook file for deploying the Ansible Galaxy ssh-hardening ro
 ## License
 
 BSD
+
+## Resources
+
+Openssh release note: [https://www.openssh.com/releasenotes.html](https://www.openssh.com/releasenotes.html)
 
 ## Author Information
 

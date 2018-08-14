@@ -1,3 +1,5 @@
+title 'Opensh-server test'
+
 control 'sshd-01' do
   impact 1.0
   title 'Protocol ssh version'
