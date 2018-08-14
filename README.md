@@ -57,7 +57,8 @@ sshd_port: "22"
 sshd_protocol_version: "2"
 
 # Listening on specific address
-sshd_listening_address: "0.0.0.0"
+sshd_listening_address:
+  - 0.0.0.0
 
 # Deny root login
 sshd_root_login: "no"
@@ -83,6 +84,20 @@ sshd_client_alive_countMax: "2"
 
 # Set banner
 sshd_banner: "/etc/issue.net"
+
+# Use pam authentification
+sshd_pam: "yes"
+
+# Use  privilege separation
+sshd_privilege_separation_59: "sandbox"
+sshd_privilege_separation_53: "yes"
+
+# Password authentification should be disable
+sshd_password_authentification: "yes"
+
+# Limit max connexion non-authentified concurency and max try
+sshd_max_auth_tries: "5"
+sshd_max_startups: "10:30:100"
 ```
 
 ## Dependencies
