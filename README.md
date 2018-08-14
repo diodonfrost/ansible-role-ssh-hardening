@@ -1,5 +1,6 @@
 # Role Name
 
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.ssh_hardening-660198.svg)](https://galaxy.ansible.com/diodonfrost/ssh_hardening)
 [![Build Status](https://travis-ci.org/diodonfrost/ansible-role-ssh-hardening.svg?branch=master)](https://travis-ci.org/diodonfrost/ansible-role-ssh-hardening)
 
 This role provide a compliance for secure openssh-server and openssh-client on your target host.
