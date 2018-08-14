@@ -7,57 +7,58 @@
 # Package generated configuration file
 # See the sshd_config(5) manpage for details
 
-# What ports, IPs and protocols we listen for
 Port {{ sshd_port }}
-# Use these options to restrict which interfaces/protocols sshd will bind to
-#ListenAddress ::
-#ListenAddress {{ sshd_listening_address }}
+
+{% for address in sshd_listening_address -%}
+ListenAddress {{ address }}
+{% endfor %}
+
 Protocol {{ sshd_protocol_version }}
 # HostKeys for protocol version 2
 HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_dsa_key
 HostKey /etc/ssh/ssh_host_ecdsa_key
 HostKey /etc/ssh/ssh_host_ed25519_key
-#Privilege Separation is turned on for security
-UsePrivilegeSeparation yes
+
+PubkeyAuthentication yes
+#AuthorizedKeysFile     %h/.ssh/authorized_keys
 
 ### CRYPTOGRAPHY ###
+
 Ciphers {{ openssh_ciphers| join(',') }}
 MACs {{ openssh_macs| join(',') }}
 KexAlgorithms {{ openssh_kexalgorithms| join(',') }}
 
-# Lifetime and size of ephemeral version 1 server key
-KeyRegenerationInterval 3600
-ServerKeyBits 1024
+### SECURITY CONFIGURATION ###
 
 # Logging
 SyslogFacility AUTH
 LogLevel INFO
 
+#Privilege Separation is turned on for security
+
+UsePrivilegeSeparation {% if openssh_version.stdout >= '5.8'-%}{{ sshd_privilege_separation_58 }}{% else %}{{ sshd_privilege_separation_53 }}{% endif %}
+
 # Authentication:
-LoginGraceTime 120
+LoginGraceTime 30
 PermitRootLogin {{ sshd_root_login }}
 StrictModes yes
 
-PubkeyAuthentication yes
-#AuthorizedKeysFile     %h/.ssh/authorized_keys
-
-# Don't read the user's ~/.rhosts and ~/.shosts files
+# Don't use host-based authentication
 IgnoreRhosts yes
-# similar for protocol version 2
+IgnoreUserKnownHosts yes
 HostbasedAuthentication no
-# Uncomment if you don't trust ~/.ssh/known_hosts for RhostsRSAAuthentication
-#IgnoreUserKnownHosts yes
-
-# To enable empty passwords, change to yes (NOT RECOMMENDED)
-PermitEmptyPasswords no
 
 # Change to yes to enable challenge-response passwords (beware issues with
 # some PAM modules and threads)
 ChallengeResponseAuthentication no
+UsePAM {{ sshd_pam }}
 
 # Change to no to disable tunnelled clear text passwords
-#PasswordAuthentication yes
+PasswordAuthentication {{ sshd_password_authentification }}
+PermitEmptyPasswords no
+MaxAuthTries {{ sshd_max_auth_tries }}
+MaxStartups {{ sshd_max_startups }}
 
 {% if sshd_kerberos_support -%}
 # Kerberos options
@@ -74,56 +75,24 @@ GSSAPICleanupCredentials yes
 {% endif %}
 
 X11Forwarding {{ sshd_x11_forwarding }}
-X11DisplayOffset 10
 PrintMotd no
 PrintLastLog yes
-TCPKeepAlive yes
-#UseLogin no
+TCPKeepAlive no
 
-#MaxStartups 10:30:60
 Banner {{ sshd_banner }}
 
 # Allow client to pass locale environment variables
 AcceptEnv LANG LC_*
 
-Subsystem sftp /usr/lib/openssh/sftp-server
-
-# Set this to 'yes' to enable PAM authentication, account processing,
-# and session processing. If this is enabled, PAM authentication will
-# be allowed through the ChallengeResponseAuthentication and
-# PasswordAuthentication.  Depending on your PAM configuration,
-# PAM authentication via ChallengeResponseAuthentication may bypass
-# the setting of "PermitRootLogin without-password".
-# If you just want the PAM account and session checks to run without
-# PAM authentication, then enable this but set PasswordAuthentication
-# and ChallengeResponseAuthentication to 'no'.
-UsePAM yes
-
-
 AllowAgentForwarding {{ sshd_agent_forwarding }}
 AllowTcpForwarding {{ sshd_tcp_forwarding }}
-#GatewayPorts no
-#X11UseLocalhost yes
-#PermitTTY yes
-#PrintMotd yes
-#PrintLastLog yes
-#TCPKeepAlive yes
-#UseLogin no
-#UsePrivilegeSeparation sandbox
-#PermitUserEnvironment no
-#Compression delayed
+
 ClientAliveInterval {{ sshd_client_alive_intervale }}
 ClientAliveCountMax {{ sshd_client_alive_countMax }}
-#ShowPatchLevel no
-#UseDNS yes
-#PidFile /var/run/sshd.pid
-#MaxStartups 10:30:100
-#PermitTunnel no
-#ChrootDirectory none
-#VersionAddendum none
 
-# no default banner path
-#Banner none
+### SFTP CONFIGURATION ###
+
+Subsystem sftp /usr/lib/openssh/sftp-server
 
 # Accept locale-related environment variables
 AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES

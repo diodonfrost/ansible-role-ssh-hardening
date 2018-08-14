@@ -103,7 +103,7 @@ This is a sample playbook file for deploying the Ansible Galaxy ssh-hardening ro
 
 ## License
 
-BSD
+Apache 2
 
 ## Resources
 
