@@ -15,3 +15,7 @@
 - include_tasks: crypto.yml
 
 - include_tasks: sshd.yml
+  when: sshd_hardening == true
+
+- include_tasks: ssh.yml
+  when: ssh_hardening == true

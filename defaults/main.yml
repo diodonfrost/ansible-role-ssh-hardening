@@ -1,6 +1,12 @@
 ---
 # defaults file for ansible-role-ssh-hardening
 
+# Enable hardening sshd
+sshd_hardening: true
+
+# Enable hardening ssh
+ssh_hardening: true
+
 # Define listening sshd port
 sshd_port: "22"
 

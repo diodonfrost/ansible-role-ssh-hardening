@@ -78,6 +78,8 @@ platforms:
     driver:
       image: diodonfrost/ubuntu-14.04-ansible
       platform: ubuntu
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
   - name: debian-9-ansible
     driver:
       image: diodonfrost/debian-9-ansible
@@ -118,7 +120,7 @@ platforms:
   - name: amazonlinux-1-ansible
     driver:
       image: diodonfrost/amazonlinux-1-ansible
-      run_command: /usr/sbin/init
+      run_command: /sbin/init
       platform: centos
   - name: opensuse-42.3-ansible
     driver:

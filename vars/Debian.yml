@@ -5,3 +5,5 @@ sshd_group: ssh
 sshd_config: /etc/ssh/sshd_config
 sshd_config_owner: root
 sshd_config_group: root
+
+ssh_config: /etc/ssh/ssh_config
