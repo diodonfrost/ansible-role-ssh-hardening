@@ -20,79 +20,113 @@ verifier:
   inspec_tests:
     - path: tests/inspec
 
-# Select platforms
 platforms:
-  - name: centos-7
+  - name: centos-7-ansible
     driver:
-      run_command: /usr/sbin/init
-      platform: centos
-  - name: centos-6
-    driver:
-      provision_command: yum install -y upstart
+      image: diodonfrost/centos-7-ansible
       run_command: /sbin/init
       platform: centos
-  - name: fedora-28
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: centos-6-ansible
     driver:
+      image: diodonfrost/centos-6-ansible
+      platform: centos
+  - name: fedora-28-ansible
+    driver:
+      image: diodonfrost/fedora-28-ansible
       run_command: /usr/sbin/init
       platform: centos
-  - name: fedora-27
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: fedora-27-ansible
     driver:
+      image: diodonfrost/fedora-27-ansible
       run_command: /usr/sbin/init
       platform: centos
-  - name: fedora-26
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: fedora-26-ansible
     driver:
+      image: diodonfrost/fedora-26-ansible
       run_command: /usr/sbin/init
       platform: centos
-  - name: ubuntu-18.04
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: ubuntu-18.04-ansible
     driver:
-      provision_command: apt-get install -y init
+      image: diodonfrost/ubuntu-18.04-ansible
       run_command: /sbin/init
       platform: ubuntu
-  - name: ubuntu-17.10
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: ubuntu-17.10-ansible
     driver:
-      provision_command: apt-get install -y init
+      image: diodonfrost/ubuntu-17.10-ansible
       run_command: /sbin/init
       platform: ubuntu
-  - name: ubuntu-16.04
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: ubuntu-16.04-ansible
     driver:
-      provision_command: apt-get install -y init
+      image: diodonfrost/ubuntu-16.04-ansible
       run_command: /sbin/init
       platform: ubuntu
-  - name: ubuntu-14.04
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: ubuntu-14.04-ansible
     driver:
+      image: diodonfrost/ubuntu-14.04-ansible
       platform: ubuntu
-  - name: debian-9
+  - name: debian-9-ansible
     driver:
-      provision_command: apt-get install -y systemd
+      image: diodonfrost/debian-9-ansible
       run_command: /bin/systemd
       platform: debian
-  - name: debian-8
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: debian-8-ansible
     driver:
+      image: diodonfrost/debian-8-ansible
       run_command: /sbin/init
       platform: debian
-  - name: oraclelinux-7
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: debian-7-ansible
     driver:
+      image: diodonfrost/debian-7-ansible
+      platform: debian
+  - name: oraclelinux-7-ansible
+    driver:
+      image: diodonfrost/oraclelinux-7-ansible
       run_command: /usr/sbin/init
       platform: centos
-  - name: oraclelinux-6
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: oraclelinux-6-ansible
     driver:
-      provision_command: yum install -y upstart
+      image: diodonfrost/oraclelinux-6-ansible
       run_command: /sbin/init
       platform: centos
-  - name: amazonlinux-2
+  - name: amazonlinux-2-ansible
     driver:
-      provision_command:
-        - rpm -ihv http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-        - yum install -y ansible upstart
+      image: diodonfrost/amazonlinux-2-ansible
       run_command: /usr/sbin/init
       platform: centos
-  - name: amazonlinux-1
-    driver:
       provision_command:
-        - rpm -ihv http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
-        - yum install -y ansible upstart
-      run_command: /sbin/init
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: amazonlinux-1-ansible
+    driver:
+      image: diodonfrost/amazonlinux-1-ansible
+      run_command: /usr/sbin/init
       platform: centos
+  - name: opensuse-42.3-ansible
+    driver:
+      image: diodonfrost/opensuse-42.3-ansible
+      run_command: /usr/lib/systemd/systemd
+      platform: opensuse
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 
 # Define playbook
 suites:
