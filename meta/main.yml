@@ -36,6 +36,13 @@ galaxy_info:
     - name: Amazon
       versions:
         - 2017.12
+    - name: FreeBSD
+      versions:
+        - 11.0
+        - 10.4
+    - name: OpenBSD
+      versions:
+        - 6.0
 
   galaxy_tags:
    - system
