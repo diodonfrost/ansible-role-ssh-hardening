@@ -1,26 +1,20 @@
 ---
 # params openssh-server
 
-- name: set atributes on sshd_config file
-  file:
-    path: "{{ sshd_config }}"
-    owner: "{{ sshd_config_owner }}"
-    group: "{{ sshd_config_group }}"
-    mode: 0600
-
 - name: set banner
   copy:
     src: issue.net
     dest: "{{ sshd_banner }}"
     owner: root
-    group: root
+    group: "{{ sshd_config_group }}"
 
 - name: Configfile openssh-server
   template:
     src: sshd_config.j2
     dest: "{{ sshd_config }}"
-    owner: root
-    group: root
+    owner: "{{ sshd_config_owner }}"
+    group: "{{ sshd_config_group }}"
+    mode: 0600
 
 - name: Start sshd service
   service:

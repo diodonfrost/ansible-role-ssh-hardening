@@ -139,6 +139,7 @@ This is a sample playbook file for deploying the Ansible Galaxy ssh-hardening ro
     - role: diodonfrost.ssh_hardening
 ```
 
+
 ## License
 
 Apache 2
