@@ -14,14 +14,12 @@ ListenAddress {{ address }}
 {% endfor %}
 
 Protocol {{ sshd_protocol_version }}
-# HostKeys for protocol version 2
-HostKey /etc/ssh/ssh_host_rsa_key
-HostKey /etc/ssh/ssh_host_dsa_key
-HostKey /etc/ssh/ssh_host_ecdsa_key
-HostKey /etc/ssh/ssh_host_ed25519_key
 
 PubkeyAuthentication yes
-#AuthorizedKeysFile     %h/.ssh/authorized_keys
+
+{% for key in sshd_host_key_files -%}
+HostKey {{key}}
+{% endfor %}
 
 ### CRYPTOGRAPHY ###
 

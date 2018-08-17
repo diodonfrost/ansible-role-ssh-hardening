@@ -17,46 +17,24 @@
 # list of available options, their meanings and defaults, please see the
 # ssh_config(5) man page.
 
-# Host *
+Host *
+Protocol 2
+Port {{ ssh_port }}
+UseRoaming {{ ssh_roaming }}
+PasswordAuthentication {{ ssh_password_authentification }}
+PermitLocalCommand no
+CheckHostIP yes
+BatchMode no
+StrictHostKeyChecking ask
 ForwardAgent no
 ForwardX11 no
-RhostsRSAAuthentication no
-RSAAuthentication yes
-PasswordAuthentication yes
-HostbasedAuthentication no
-GSSAPIAuthentication no
-GSSAPIDelegateCredentials no
-GSSAPIKeyExchange no
-GSSAPITrustDNS no
-#   BatchMode no
-#   CheckHostIP yes
-#   AddressFamily any
-#   ConnectTimeout 0
-#   StrictHostKeyChecking ask
-#   IdentityFile ~/.ssh/identity
-#   IdentityFile ~/.ssh/id_rsa
-#   IdentityFile ~/.ssh/id_dsa
-#   IdentityFile ~/.ssh/id_ecdsa
-#   IdentityFile ~/.ssh/id_ed25519
-#   Port 22
-Protocol 2
-#   Cipher 3des
-#   Ciphers aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-cbc,3des-cbc
-#   MACs hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-ripemd160
-#   EscapeChar ~
-#   Tunnel no
-#   TunnelDevice any:any
-#   PermitLocalCommand no
-#   VisualHostKey no
-#   ProxyCommand ssh -q -W %h:%p gateway.example.com
-#   RekeyLimit 1G 1h
-#
-# Uncomment this if you want to use .local domain
-# Host *.local
-#   CheckHostIP no
+Tunnel no
 
-Host *
-        GSSAPIAuthentication yes
+### CRYPTO ###
+Ciphers {{ openssh_ciphers| join(',') }}
+MACs {{ openssh_macs| join(',') }}
+KexAlgorithms {{ openssh_kexalgorithms| join(',') }}
+
 # If this option is set to yes then remote X11 clients will have full access
 # to the original X11 display. As virtually no X11 client supports the untrusted
 # mode correctly we set this to yes.

@@ -7,6 +7,8 @@ sshd_hardening: true
 # Enable hardening ssh
 ssh_hardening: true
 
+### OPENSSH-SERVER ###
+
 # Define listening sshd port
 sshd_port: "22"
 
@@ -16,6 +18,9 @@ sshd_protocol_version: "2"
 # Listening on specific address
 sshd_listening_address:
   - 0.0.0.0
+
+# Check host key when sshd start
+sshd_host_key_files: []
 
 # Deny root login
 sshd_root_login: "no"
@@ -56,6 +61,16 @@ sshd_password_authentification: "yes"
 sshd_max_auth_tries: "5"
 sshd_max_startups: "10:30:100"
 
+### OPENSSH-CLIENT ###
+
+# Definie default ssh port
+ssh_port: "22"
+
+# Disable roaming
+ssh_roaming: "no"
+
+# Ssh must be use pub key
+ssh_password_authentification: "no"
 
 ### CRYPTOGRAPHY ###
 openssh_ciphers: []
