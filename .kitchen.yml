@@ -32,6 +32,9 @@ platforms:
     driver:
       image: diodonfrost/centos-6-ansible
       platform: centos
+      run_command: /sbin/init
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
   - name: fedora-28-ansible
     driver:
       image: diodonfrost/fedora-28-ansible
@@ -77,6 +80,7 @@ platforms:
   - name: ubuntu-14.04-ansible
     driver:
       image: diodonfrost/ubuntu-14.04-ansible
+      run_command: /sbin/init
       platform: ubuntu
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
@@ -105,6 +109,7 @@ platforms:
       platform: centos
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd
   - name: oraclelinux-6-ansible
     driver:
       image: diodonfrost/oraclelinux-6-ansible
