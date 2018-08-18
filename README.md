@@ -44,6 +44,9 @@ Supported platforms:
 - name: opensuse
   versions:
     - all
+- name: ArchLinux
+  versions:
+    - any
 - name: FreeBSD
   versions:
     - 11.0
