@@ -38,14 +38,23 @@ end
 
 control 'ssh-05' do
   impact 1.0
-  title 'Openssh host IP'
-  desc 'Openssh should be check host IP'
+  title 'Openssh bacth mode'
+  desc 'Openssh batch mode should be deny'
   describe ssh_config do
-    its('CheckHostIP') { should cmp "yes" }
+    its('BatchMode') { should cmp "no" }
   end
 end
 
-control 'sshd-06' do
+control 'ssh-06' do
+  impact 1.0
+  title 'Openssh verify key'
+  desc 'Openssh should be checking host key'
+  describe ssh_config do
+    its('StrictHostKeyChecking') { should cmp "ask" }
+  end
+end
+
+control 'sshd-07' do
   impact 1.0
   title 'Disable forwarding with openssh'
   desc 'Tcp and x11 forwarding should be disable with openssh'
