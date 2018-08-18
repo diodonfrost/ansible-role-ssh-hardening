@@ -1,0 +1,23 @@
+---
+# params openssh public keys
+
+- name: create user ssh directory
+  file:
+    state: directory
+    path: "{{ ssh_user_directory }}"
+    owner: "{{ sshd_config_owner }}"
+    group: "{{ sshd_config_group }}"
+    mode: 0600
+
+- name: transfer root openssh public key
+  lineinfile:
+    state: present
+    path: "{{ ssh_user_keys_file }}"
+    regexp: "{{ item }}"
+    line: "{{ item }}"
+    create: yes
+    owner: "{{ sshd_config_owner }}"
+    group: "{{ sshd_config_group }}"
+    mode: 0600
+  with_items:
+    - "{{ public_keys }}"

@@ -5,3 +5,5 @@ sshd_config_owner: root
 sshd_config_group: wheel
 
 ssh_config: /etc/ssh/ssh_config
+ssh_user_directory: /root/.ssh
+ssh_user_keys_file: /root/.ssh/authorized_keys

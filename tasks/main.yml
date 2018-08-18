@@ -19,3 +19,8 @@
 
 - include_tasks: ssh.yml
   when: ssh_hardening == true
+
+- include_tasks: public-keys.yml
+  when:
+    - openssh_keys == true
+    - public_keys != ""
