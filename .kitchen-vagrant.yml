@@ -38,6 +38,12 @@ platforms:
   - name: oraclelinux-6
     driver:
       box: bento/oracle-6
+  - name: archlinux-rolling
+    driver:
+      box: archlinux/archlinux
+      provision: true
+      vagrantfiles:
+        - tests/vagrant/vagrant_archlinux_target.rb
   - name: freebsd-11
     driver:
       box: bento/freebsd-11
