@@ -36,6 +36,9 @@ galaxy_info:
     - name: Amazon
       versions:
         - 2017.12
+    - name: opensuse
+      versions:
+        - all
     - name: FreeBSD
       versions:
         - 11.0

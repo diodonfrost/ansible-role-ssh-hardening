@@ -44,6 +44,13 @@ Supported platforms:
 - name: opensuse
   versions:
     - all
+- name: FreeBSD
+  versions:
+    - 11.0
+    - 10.4
+- name: OpenBSD
+  versions:
+    - 6.0
 ```
 
 ## Role Variables
@@ -51,11 +58,23 @@ Supported platforms:
 This role has multiple variables. The defaults for all these variables are the following:
 
 ```yaml
+---
+# defaults file for ansible-role-ssh-hardening
+
 # Enable hardening sshd
 sshd_hardening: true
 
 # Enable hardening ssh
 ssh_hardening: true
+
+# Enable public keys transfert
+openssh_keys: true
+
+# Transfert ssh public on the target host
+public_keys: []
+# - key1
+# - key2
+# - key3
 
 ### OPENSSH-SERVER ###
 
