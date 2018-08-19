@@ -44,6 +44,12 @@ platforms:
       provision: true
       vagrantfiles:
         - tests/vagrant/vagrant_archlinux_target.rb
+  - name: gentoo
+    driver:
+      box: generic/gentoo
+      provision: true
+      vagrantfiles:
+        - tests/vagrant/vagrant_gentoo_target.rb
   - name: freebsd-11
     driver:
       box: bento/freebsd-11
