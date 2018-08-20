@@ -47,6 +47,9 @@ Supported platforms:
 - name: ArchLinux
   versions:
     - any
+- name: Gentoo
+  versions:
+    - any
 - name: FreeBSD
   versions:
     - 11.0
