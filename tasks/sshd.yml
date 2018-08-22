@@ -15,6 +15,8 @@
     owner: "{{ sshd_config_owner }}"
     group: "{{ sshd_config_group }}"
     mode: 0600
+  notify:
+    - "(Handler: All Linux/Unix OSs) Restart sshd"
 
 - name: Start sshd service
   service:
