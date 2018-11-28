@@ -15,12 +15,12 @@
 - include_tasks: crypto.yml
 
 - include_tasks: sshd.yml
-  when: sshd_hardening == true
+  when: sshd_hardening
 
 - include_tasks: ssh.yml
-  when: ssh_hardening == true
+  when: ssh_hardening
 
 - include_tasks: public-keys.yml
   when:
-    - openssh_keys == true
+    - openssh_keys
     - public_keys != ""
