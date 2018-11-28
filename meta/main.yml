@@ -2,6 +2,7 @@
 galaxy_info:
   role_name: ssh-hardening
   author: diodonfrost
+  company: diodonfrost
   description: Hardening sshd and ssh
 
   license: license Apache
