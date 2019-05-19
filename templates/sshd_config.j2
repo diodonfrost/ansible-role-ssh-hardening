@@ -35,7 +35,9 @@ LogLevel INFO
 
 #Privilege Separation is turned on for security
 
+{% if openssh_version.stdout is version('7.5', '<') %}
 UsePrivilegeSeparation {% if openssh_version.stdout >= '5.9'-%}{{ sshd_privilege_separation_59 }}{% else %}{{ sshd_privilege_separation_53 }}{% endif %}
+{% endif %}
 
 # Authentication:
 LoginGraceTime 30

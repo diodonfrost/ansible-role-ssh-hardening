@@ -58,15 +58,6 @@ end
 
 control 'sshd-07' do
   impact 1.0
-  title 'Privilege separation'
-  desc 'Allow the OpenSSH server to run a small (necessary) amount of code as root and the of the code in a chroot jail environment'
-  describe sshd_config do
-    its('UsePrivilegeSeparation') { should match(/sandbox|yes/) }
-  end
-end
-
-control 'sshd-08' do
-  impact 1.0
   title 'Authentification retry'
   desc 'Authentification retry should be limited by max connection non-authentified connexion concurency and max try'
   describe sshd_config do
