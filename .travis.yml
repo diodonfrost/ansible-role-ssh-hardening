@@ -4,6 +4,8 @@ services:
 
 env:
   - distribution: centos
+    version: "8"
+  - distribution: centos
     version: "7"
   - distribution: centos
     version: "6"

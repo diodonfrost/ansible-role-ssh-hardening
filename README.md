@@ -15,6 +15,7 @@ Supported platforms:
 ```yaml
 - name: EL
   versions:
+    - 8
     - 6
     - 7
 - name: Fedora
