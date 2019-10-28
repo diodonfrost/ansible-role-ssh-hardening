@@ -91,6 +91,13 @@ platforms:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 
   # Debian
+  - name: debian-10-ansible
+    driver:
+      image: diodonfrost/debian-10-ansible
+      run_command: /bin/systemd
+      platform: debian
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
   - name: debian-9-ansible
     driver:
       image: diodonfrost/debian-9-ansible

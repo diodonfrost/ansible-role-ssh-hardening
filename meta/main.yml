@@ -22,8 +22,10 @@ galaxy_info:
         - 26
     - name: Debian
       versions:
+        - buster
         - stretch
         - jessie
+        - wheezy
     - name: Ubuntu
       versions:
         - bionic
