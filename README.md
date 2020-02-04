@@ -31,6 +31,7 @@ Supported platforms:
     - wheezy
 - name: Ubuntu
   versions:
+    - disco
     - bionic
     - artful
     - xenial
