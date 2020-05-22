@@ -29,7 +29,6 @@ jobs:
           - debian-9
           - debian-8
           - debian-7
-          - oraclelinux-8
           - oraclelinux-7
           - oraclelinux-6
           - amazonlinux-2
